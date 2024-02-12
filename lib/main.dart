@@ -29,6 +29,38 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  //modal bottom sheet
+  myModalBottomSheet(context) {
+    showModalBottomSheet(
+      backgroundColor: Theme.of(context).primaryColor,
+      context: context,
+      builder: (context) {
+        return const Padding(
+          padding: EdgeInsets.all(15),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Column(
+                    children: [
+                      SizedBox(
+                        width: 60,
+                        height: 60,
+                        child: CircleAvatar(
+                          child: Icon(Icons.email_outlined, size: 40,),
+                        ),
+                      ),
+                      Text('Email', style: TextStyle(fontSize: 20, color: Colors.white,),),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +68,37 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         centerTitle: true,
-        title: const Text('Bottom Sheet', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25, color: Colors.white,),),
+        title: const Text(
+          'Bottom Sheet',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+            color: Colors.white,
+          ),
+        ),
       ),
-      body: const Center(child: Text('Bottom Sheet'),),
+      body: Center(
+        child: SizedBox(
+          height: 60,
+          width: 270,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).primaryColor,
+            ),
+            onPressed: () {
+              myModalBottomSheet(context);
+            },
+            child: const Text(
+              'Show Bottom Sheet',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
